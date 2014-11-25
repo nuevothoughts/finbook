@@ -1,0 +1,14 @@
+.admin-custom-outer{
+    background-color: white;
+    border: 2px solid;
+    border-color: #105087;
+}
+.admin-custome-inner{
+    background-color: #105087;
+    height: 60%;
+}
+ul.dropdown-menu-form {
+    padding: 5px 10px 0;
+    max-height: 300px;
+    overflow-y: scroll;
+}

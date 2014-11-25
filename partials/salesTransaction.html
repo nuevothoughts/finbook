@@ -1,0 +1,231 @@
+<div section1></div>
+
+<div class="container">
+    
+     <div class="row">
+     
+    <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" ng-include=" 'partials/sideLink.html' "></div> 
+    <div class="col-lg-11 col-md-11  col-sm-11 col-xs-14 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 col-lg-offset-0"> 
+    <div class="panel panel-primary" >
+        <div class="panel-heading">Sales Transaction </div>
+            <div class="panel-body " >        
+            </div>
+        <div class="row">
+            
+        <div class="col-lg-5 col-lg-offset-1">
+          
+            <input id="searchInput" value="Type To Filter">
+        </div>
+            
+        <div class="col-lg-2 col-lg-offset-6">
+           
+            <button type="button" ng-click="openPopup()" data-toggle="modal" data-target="#myModal" class="btn btn-primary">New Entry</button>
+        </div>
+            
+        <div class="dropdown col-lg-offset-1 col-lg-5">
+            <a class="dropdown-toggle btn" data-toggle="dropdown" href="">
+                Filter Column
+                <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu dropdown-menu-form"  role="menu">
+              <li>
+                <label style="margin-left:15%;" id="09{{$index+1}}{{$index+1}}" class="checkbox" ng-repeat="column in columns">
+                    <input type="checkbox" ng-model="column.visible" /> {{column.title}}
+                </label>
+              </li> 
+          </ul>
+        </div>
+            
+        <div class="col-lg-2 col-lg-offset-6">
+            <br>
+            <a href="" ng-click="exportData()" > <span class="glyphicon glyphicon-export"></span> Export</a>
+        </div>
+            
+            
+        <!--
+        <div class="col-lg-offset-7 col-lg-2">
+           <button class="" ng-click="">Add new</button>
+           <a href="" ng-click="exportData()" > <span class="glyphicon glyphicon-export"></span> Export</a>
+        </div> -->
+        </div>
+        
+       
+        
+        
+        
+        <br>
+    <div class="table-responsive " style="overflow: auto;" id="exportable11"> 
+    <table ng-table="tableParams" show-filter="true" class="table table-bordered" id="table" >
+        <thead>
+        <tr>
+        <!--    <th style="background-color:#e2eff5;">S.No</th> -->
+            
+            <th style="background-color:#e2eff5;" ng-repeat="column in columns" ng-show="column.visible"
+                class="text-center sortable" ng-class="{
+                    'sort-asc': tableParams.isSortBy(column.field, 'asc'),
+                    'sort-desc': tableParams.isSortBy(column.field, 'desc')
+                  }"
+                ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
+                {{column.title}}
+            </th>
+            
+            <th style="background-color:#e2eff5;">Action</th>
+        
+        </tr>
+        </thead>
+        <tbody id="fbody">
+        <tr  class='clickableRow' id="11{{user.user_id}}" href='url://' ng-repeat="user in $data">
+        <!--    <td>{{$index + 1}}</td> -->
+            <td  class='clickableRow' id="{{$index + 1}}{{user.user_id}}" href='url://' ng-repeat="column in columns" ng-show="column.visible" sortable="column.field" >
+                {{user[column.field]}}
+            </td>
+            <td><a href="" ng-click="edit(user)" data-toggle="modal" data-target="#myModal"> Edit</a> | <a href="" ng-click="del(user)">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+        <!-------------Html code for modal (popup box)----------->
+        
+            <div class="modal fade" id="myModal" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title" id="myModalLabel"><small><u><font color="#3e86c3">  {{user.old}}{{user.new}} Record   </font></u></small></h4>
+                </div>
+                <div class="modal-body">
+                
+                  
+                    <form name="form">
+                        <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <h2><small>Transaction Date</small></h2>
+                        </div>    
+                        <div class="col-lg-8">
+                            <br>
+                           
+                           
+                                <p class="input-group">
+                                  <input type="text" name="date" class="form-control" datepicker-popup="{{format}}" ng-model="user.date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                  <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                  </span>  
+                                </p>
+                          
+                            
+                            <span ng-show="form.date.$error.required"><font color="red">Please provide date of the addition of the new user</font></span> 
+                            
+                        </div>
+                        </div>
+                           
+                        <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <h2><small>Transaction Type</small></h2>
+                        </div>    
+                        <div class="col-lg-8">
+                            <br>
+                            
+                            <select class="form-control combobox-container" name="type"  ng-model="user.type" ng-options="type.value for type in type_transaction" required>
+                              
+                                <option value="" default selected >Type of Transaction</option>
+                            </select>
+                            
+                            
+                        <!--    <input type="text" name="type" class="form-control" placeholder="transaction type" ng-model="user.type" required> -->
+                            <span ng-show="form.type.$error.required"><font color="red">Please provide type of the new user</font></span> 
+                        
+                        
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            
+                            <h2><small>Transaction Ref.No</small></h2>
+                        </div>    
+                        <div class="col-lg-8">
+                            <br>
+                            <input type="text" name="ref" class="form-control" id="exampleInputEmail1" placeholder="reference no" ng-model="user.userRef" required/>
+                            <span ng-show="form.ref.$error.required"><font color="red">Please provide Reference No of the Transaction</font></span> 
+                        </div>
+                      </div>
+                        
+                      <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <h2><small>Customer Name</small></h2>
+                        </div>    
+                        <div class="col-lg-8">
+                            <br>
+                            <input type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="name" ng-model="user.name" required/>
+                            <input type="text" class="form-control" id="user.user_id" style="display: none;" placeholder="name" ng-model="user.user_id">
+                            <span ng-show="form.name.$error.required"><font color="red">Please provide full name of the user</font></span> 
+                        </div>
+                      </div>
+                        
+                      <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <h2><small>Description</small></h2>
+                        </div>    
+                        <div class="col-lg-8">
+                            <br>
+                            <textarea class="form-control" name="discription" placeholder="description" rows="3" ng-model="user.description" required></textarea>
+                            <span ng-show="form.discription.$error.required"><font color="red">Please Give some the Description</font></span> 
+                        </div>
+                      </div>
+                        
+                      <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <h2><small>Remark</small></h2>
+                        </div>    
+                        <div class="col-lg-8">
+                            <br>
+                           <textarea class="form-control" name="remark" id="12" placeholder="Remark" rows="3" ng-model="user.remark" required></textarea>
+                           <span ng-show="form.remark.$error.required"><font color="red">Please Give some the Remark</font></span> 
+                        </div>
+                      </div>
+                        
+                      <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <h2><small>Amount</small></h2>
+                        </div>    
+                        <div class="col-lg-8">
+                            <br>
+                           <input type="type" name="amt"  class="form-control bfh-number" ng-model="user.amt" required/>
+                           <span ng-show="form.amt.$error.required"><font color="red">Please provide the amount</font></span> 
+                        </div>
+                      </div>
+                        
+                      <div class="row">
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <h2><small>Status</small></h2>
+                        </div>    
+                        <div class="col-lg-8">
+                            <br>
+                            <input type="text" name="status" class="form-control" id="exampleInputEmail1" placeholder="status" ng-model="user.status" required/>
+                            <span ng-show="form.status.$error.required"><font color="red">Please provide status</font></span> 
+                        </div>
+                      </div>
+                  
+                  
+                  
+               
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" ng-click="save(user)" >Save changes</button>
+                </div>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        <!------------------------------------------------------->
+    
+        
+        
+        <!---------------------------------------------------->
+    
+    </div>
+    </div>
+    </div>
+    </div>

@@ -1,0 +1,72 @@
+<div section1></div>
+<div class="container">
+    
+        <!-- div for the login page of the admin-->
+        
+        <div class="admin-custom-outer col-lg-8 col-lg-offset-4 col-md-10 col-md-offset-3 col-sm-12 col-xs-12 col-xs-offset-2">
+             <br>
+			<div class="col-lg-16 col-md-16 col-sm-16 col-xs-16 admin-custome-inner"> <h2 class="panel-heading"><font color='white'>Finance Management</font></h2></div>
+            <br>
+            
+            <div class="col-lg-14" id="alertbox">
+                <div data-alerts="alerts" data-titles="{&quot;warning&quot;: &quot;&lt;em&gt;Warning!&lt;/em&gt;&quot;}" data-ids="myid" data-fade="6000"></div>
+            </div>
+                
+                
+            
+            <br><br>
+            
+            <form name="frm">
+               
+            <div class="row">
+              
+                <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <br>
+                    <h1><small><font color="#105087">Email:</font></small></h1>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+                        <br><br>
+                        <input type="email" class="form-control"  name="email1" id="inputEmail3" placeholder="Email" ng-model="user.email" required>
+                        <span ng-show=" frm.email1.$dirty && frm.email1.$error.required">Please write your email id</span>
+                        <span ng-show=" frm.email1.$dirty && frm.email1.$error.email">Please provide a valid email id</span>
+                            
+                    </div>
+                </div>
+                <br>
+                <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <h1><small><font color="#105087">Password:</font></small></h1>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+                        <br>
+                       <input class="form-control" type="password" placeholder="Password" size="30" ng-model="user.password" required/>
+                        <span ng-show="frm.password.$dirty && frm.password.$error.required">please write your password</span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-16 col-lg-offset-0 col-md-offset-1 col-sm-offset-1 col-xs-offset-0">
+                        <br>
+                        <a href="#">Forgot password</a>
+                        <br><br>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-14 col-sm-offset-8 col-md-offset-6 col-xs-offset-0 col-lg-offset-7 ">
+                        <br>
+                        <button class=" btn btn-default" ng-click="login(user)" ><font color="black">Login</font></button> 
+                        <br><br>
+                        <p>{{msgtxt}}</p>
+                    </div>   
+                    
+                </div>
+                
+            </div>   
+          
+   
+            
+        </form>
+</div>
+ </div>
+<div class="row voffset550">
+<br><br><br><br><br>
+</div>

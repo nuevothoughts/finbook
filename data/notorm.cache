@@ -1,0 +1,1 @@
+a:3:{s:17:"demo_cdm_profile;";a:6:{s:2:"id";b:1;s:16:"demo_cdm_user_id";b:1;s:10:"experience";b:1;s:6:"skills";b:1;s:6:"gender";b:1;s:8:"location";b:1;}s:34:"demo_cdm_user;AND demo_cdm_user.id";a:5:{s:2:"id";b:1;s:4:"name";b:1;s:8:"email_id";b:1;s:9:"mobile_no";b:1;s:8:"password";b:1;}s:14:"demo_cdm_user;";a:1:{s:2:"id";b:1;}}
